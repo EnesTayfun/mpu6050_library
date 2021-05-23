@@ -93,15 +93,16 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  MPU6050 MPU6050;
-  MPU6050.Init(FS_SEL_500, AFS_SEL_8G, DLPF_CFG_3);
-  MPU6050.Imu_Calibration(2000, &cax, &cay, &caz, &cgx, &cgy, &cgz);
+  MPU6050 MPU6050; // MPU6050 sinifindan ayni isimde bir nesne olusturulur
+  MPU6050.Init(FS_SEL_500, AFS_SEL_8G, DLPF_CFG_3); // Temel ayarlamalar yapiliir. Jiroskop, ivmeölçer hassasiyeti ve filtre değeri
+  MPU6050.Imu_Calibration(2000, &cax, &cay, &caz, &cgx, &cgy, &cgz); // kalibrasyon fonksiyonudur 2000 ölçüm yaparak ortalamasi alinir, duz zeminde yapilmasi tavsiye edilir.
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
+  {	  
+  	  //Dongu baslangici ile zaman sayimina baslayan fonksiyonlardir, while dongusunun altinda diger kisimi bulunmaktadir.
 	  prevtime = time;
 	  time = HAL_GetTick();
 	  elapsedtime=(time-prevtime)*1000;
